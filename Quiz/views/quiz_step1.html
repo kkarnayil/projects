@@ -1,0 +1,17 @@
+<h2>Step 1</h2>
+
+<div ng-init="getQuestions()">
+
+    <ol>
+        <li ng-repeat="question in questions">{{question.question | uppercase}}?
+
+            <div ng-repeat="option in question.options">
+                <input type="radio" name="{{question.id}}" ng-model="question.selectedAnswer" value="{{option.id}}">{{option.option | uppercase}}<br>
+            </div>
+
+        </li>
+    </ol>
+
+</div>
+
+<input type="button" ng-click="calculateScore()" value="Calculate Score"/>

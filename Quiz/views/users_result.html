@@ -1,0 +1,17 @@
+<div ng-init="getUsersScore()">
+<h3>User Rankings</h3>
+    <div ng-show="usersScores.length > 0">
+<ol>
+    <li ng-repeat="userScore in usersScores track by $index">
+        {{userScore.name}} ->  {{userScore.score}}
+    </li>
+
+</ol>
+    </div>
+    <div ng-show="usersScores.length == 0">
+        No user data found
+    </div>
+
+</div>
+
+<a href="#">Home</a>
