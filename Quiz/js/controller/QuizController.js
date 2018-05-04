@@ -5,9 +5,11 @@ quiz_app.controller('QuizController', ['$scope', '$location' , 'QuizService', fu
     console.log('Quiz Controller loaded.');
     this.test = "test controller";
 
-    $scope.user = {email:"enter email", name:"enter name", score:0};
+    $scope.user = {email:"", name:"", score:0};
     $scope.questions = [];
     $scope.usersScores = [];
+
+    $scope.isHome = "active";
 
     /**
      *
@@ -43,6 +45,20 @@ quiz_app.controller('QuizController', ['$scope', '$location' , 'QuizService', fu
 
     $scope.getUsersScore = function(){
         $scope.usersScores = QuizService.getUserScores();
-    }
+        $scope.usersScores.sort(sortScore);
+        $scope.isHome = "";
+        $scope.isResults = "active";
+    };
 
+    $scope.init = function(){
+        $scope.user = {email:"", name:"", score:0};
+        $scope.isHome = "active";
+        $scope.isResults = "";
+    };
+
+    var sortScore = function (a, b){
+        var aScore = a.score;
+        var bScore = b.score;
+        return ((aScore < bScore) ? 1 : ((aScore > bScore) ? -1 : 0));
+    }
 }]);

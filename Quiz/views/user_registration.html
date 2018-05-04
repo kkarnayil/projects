@@ -1,13 +1,23 @@
-<div>
+<div class="page-header" ng-init="init()">
+    <h1>Start the Quiz by filling the Registration form.</h1>
+</div>
 
-    {{cntrl.test}}
-    <form>
-    Email
+<div class="panel panel-default">
+    <div class="panel-body">
 
-    <input type="text" ng-model="user.email"/>
-    Name
-    <input type="text" ng-model="user.name"/>
-    <input type="button" ng-click="registerUser()" value="Start Quiz"/>
-    </form>
+        <form ng-submit="registerUser()">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"
+                       ng-model="user.email" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Name"
+                       ng-model="user.name" required>
+            </div>
 
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
 </div>

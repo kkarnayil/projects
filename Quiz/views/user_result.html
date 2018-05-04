@@ -1,4 +1,14 @@
+<div class="jumbotron">
 
-Hi {{user.name}}, Your Score is {{user.score}}
+    <div class="container" ng-show="user.name != '' ">
+        <h1>Hi {{user.name}}, </h1>
+        <p>Your Score is {{user.score}} / {{questions.length}}</p>
+        <p><a class="btn btn-primary btn-lg" href="#!user_results" role="button">Check your Rankings</a></p>
 
-<a href="#!user_results">Check your Ranking</a>
+    </div>
+    <div class="container" ng-show="user.name == '' ">
+        <h1>Register First!</h1>
+        <p>Register to Start Quiz!</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Register</a></p>
+    </div>
+</div>

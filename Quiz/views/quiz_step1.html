@@ -1,17 +1,23 @@
-<h2>Step 1</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
 
-<div ng-init="getQuestions()">
+        <div ng-init="getQuestions()">
+            <ol>
+                <li ng-repeat="question in questions">{{question.question | uppercase}}?
+                    <div ng-repeat="option in question.options">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{{question.id}}" ng-model="question.selectedAnswer"
+                                       value="{{option.id}}">
+                                {{option.option | uppercase}}
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <br>
+            </ol>
+        </div>
 
-    <ol>
-        <li ng-repeat="question in questions">{{question.question | uppercase}}?
-
-            <div ng-repeat="option in question.options">
-                <input type="radio" name="{{question.id}}" ng-model="question.selectedAnswer" value="{{option.id}}">{{option.option | uppercase}}<br>
-            </div>
-
-        </li>
-    </ol>
-
+        <input type="button" ng-click="calculateScore()" value="Calculate Score" class="btn btn-primary"/>
+    </div>
 </div>
-
-<input type="button" ng-click="calculateScore()" value="Calculate Score"/>

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="quiz-app" ng-controller="QuizController">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz App</title>
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
 </head>
 
-<body ng-app="quiz-app">
-<h3>Quiz App</h3>
-
-<div ng-controller="QuizController">
-<div ng-view></div>
+<div ng-include="'views/nav.html'"></div>
+<body>
+<div class="container">
+    <div ng-view></div>
 </div>
 
 <script src="js/vendor/jquery-3.2.0.min.js" type="text/javascript"></script>
+<script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/vendor/angular.min.js" type="text/javascript"></script>
 <script src="js/vendor/angular-route.min.js" type="text/javascript"></script>
 <script src="js/app.js" type="text/javascript"></script>
 <script src="js/service/QuizService.js" type="text/javascript"></script>
 <script src="js/controller/QuizController.js" type="text/javascript"></script>
 </body>
-
+<div ng-include="'views/footer.html'"></div>
 
 </html>
