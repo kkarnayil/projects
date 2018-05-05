@@ -10,4 +10,4 @@ Angular JS Projects
    Client side ecommerce template built using AngularJS and Bootstrap.
    
 4) TaskApp: 
-   Client side application made to manage Tasks.
+   Client side application made to manage Tasks. Gulp used for build management.
