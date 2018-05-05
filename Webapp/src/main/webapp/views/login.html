@@ -1,0 +1,64 @@
+<div class="container">
+
+	<!-- Sign up form -->
+		<div class="card card-container" ng-show = "!$ctrl.showCreateAccount">
+			<img id="profile-img" class="profile-img-card"
+				src="resources/images/avatar_2x.png" />
+			<p id="profile-name" class="profile-name-card"> Login to Your Account</p><br>
+			
+			
+			 
+			<form class="form-signin" ng-submit="validateUser()">			   
+				 <input
+					type="email" id="inputEmailLogin" class="form-control height"
+					placeholder="Email address" ng-model="emailId" required> 
+				 <input
+					type="password" id="inputPasswordLogin" class="form-control height"
+					placeholder="Password" ng-model="password" required>
+				
+				<button class="btn btn-lg btn-primary btn-block btn-signin"
+					type="submit">Login</button>
+				<button class="btn btn-lg btn-primary btn-block btn-signin" ng-click="$ctrl.showCreateAccount = true"> Create an Account </button>
+					
+				<div class="alert alert-danger" role="alert" ng-show="errorMsg.length!== 0"> {{errorMsg}}</div>
+			
+			</form>
+			<!-- /form -->
+			
+		</div>
+		<!-- /login form end -->
+
+	<!-- Sign up form -->
+	<div class="card card-container" ng-show = "$ctrl.showCreateAccount">
+		<img id="profile-img" class="profile-img-card"
+			src="resources/images/avatar_2x.png" />
+		<p id="profile-name" class="profile-name-card">Create Your Account</p> <br>
+		<form class="form-signin" ng-submit="createUserAccount()">
+			<input
+				type="text" id="firstName" class="form-control height"
+				placeholder="First Name" ng-model="firstName" required autofocus>
+			<input
+				type="text" id="lastName" class="form-control height"
+				placeholder="Last Name" ng-model="lastName" required> 
+			 <input
+				type="email" id="inputEmail" class="form-control height"
+				placeholder="Email address" ng-model="emailId" required> 
+			 <input
+				type="password" id="inputPassword" class="form-control height"
+				placeholder="Password" ng-model="password" required>
+			
+			<button class="btn btn-lg btn-primary btn-block btn-signin"
+				type="submit">Create Account</button>
+				
+			<button class="btn btn-lg btn-primary btn-block btn-signin" ng-click = "$ctrl.showCreateAccount = false;"> &lt; Back </button>
+	
+			<div class="alert alert-danger" role="alert" ng-show="errorMsg.length!== 0"> <strong>{{errorMsg}}!</strong></div>
+				
+		</form>
+		<!-- /form -->
+		<br>	
+	</div>
+	<!-- /sign up from end -->
+</div>
+
+<!-- /container -->

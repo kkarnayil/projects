@@ -1,0 +1,118 @@
+<div>
+	<div ng-include="'views/header.htm'"></div>
+
+	<div class="container">
+		<div class="row profile">
+			<div class="col-md-3 margin-btm-10">
+				<div ng-include="'views/leftpanel.htm'"></div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="profile-content-update">
+					<center>
+					<h4 style="padding-bottom:5px">Update Your Profile Information</h4>
+					</center>
+
+					<form class="form-horizontal" ng-submit="updateUser()">
+						
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail3"
+									placeholder="Email" ng-model="emailId" disabled required>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="firstName" class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="firstName"
+									ng-model="firstName" placeholder="First Name" required>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lastName" class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="lastName"
+									ng-model="lastName" placeholder="Last Name">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Update Profile</button>
+							</div>
+						</div>
+					</form>
+					
+					<div class="separator">
+					</div>
+					<center>
+					<h4 style="padding-bottom:5px">Change Your Profile Password</h4>
+					</center>
+					
+					
+					<form class="form-horizontal" ng-submit="changePassword()">			
+					<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">Old Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword"
+									ng-model="oldpassword" placeholder="Old Password" required>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword3"
+									ng-model="password" placeholder="Password" required>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Change Password</button>
+							</div>
+						</div>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="profileUpdateModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Success</h4>
+      </div>
+      <div class="modal-body">
+        <p>Profile Updated Successfully&hellip;</p>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary" ng-click="refreshPage('home')">HOME</button>
+        <button type="button" class="btn btn-primary" ng-click="refreshPage(null)">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="errorModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Failure</h4>
+      </div>
+      <div class="modal-body">
+        <p>Old Password incorrect&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">TRY AGAIN!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
