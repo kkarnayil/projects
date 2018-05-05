@@ -1,0 +1,58 @@
+<html>
+
+<head>
+	<meta http-equiv="content-type" charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" href="css/styles.css"/>
+	<link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+	<!-- JQuery Library -->
+	<script src ="libs/js/jquery.min.js" text="text/javascript"></script>
+</head>
+<body background="images/bg-5-full.jpg">
+
+	<div class="top-nav">
+		<div class="left-section">
+			<form id="projectForm">
+				<label for="projectInput" class="labelInp">Enter Task:
+				<input id="projectInput" type="text" placeholder="Enter Name" autofocus required/>
+			</form>
+		</div>
+		<div class="right-section">
+			<span class="totalSpan">Total: &nbsp;</span><span class="projectCount totalSpan">0</span>
+		</div>
+	</div>
+
+	<div class="table-container">
+		<div class="left-section-half">
+			<table id="newProjectsTable">
+			  <tr>
+				<th>New Tasks</th>
+				<th class="action">Action</th>
+				<th>Count : <span class="projectCount">0</span></th>
+			  </tr>
+			  <tr id="newProjectsTableNoData">
+				<td colspan="3" class="dataPadding">No New Task in Progress.</td>
+			  </tr>
+
+			 </table>
+		</div>
+
+		<div class="right-section-half">
+		    <table id="completedProjectsTable">
+			 <tr>
+				<th>Completed Tasks</th>
+			  </tr>
+			 <tr id="completedProjectsTableNoData">
+				<td class="dataPadding">No Tasks Completed.</td>
+			  </tr>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+<script src="js/project-controller.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,142 @@
+body{
+	 font-family: arial, sans-serif;
+	 color: white;
+}
+
+form{
+	margin:0px;
+}
+input[type=text]{
+    width: 50%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+}
+
+input[type=button] {
+    width: 40%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.top-nav{
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 20px;
+}
+
+.left-section{
+	width: 58%;
+	display: inline-block;
+}
+
+.right-section{
+	display: inline-block;
+	width: 40%;
+	text-align: right;
+}
+
+.left-section-half{
+	margin-top:10px;
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.right-section-half{
+	margin-top:10px;
+	display: inline-block;
+	width: 50%;
+	vertical-align: top;
+}
+
+.totalSpan{
+	 font-size: 2em;
+     font-weight: bold;
+}
+
+.table-container{
+	padding-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+		border-radius: 3px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.action{
+	text-align:center;
+}
+
+.hideTable{
+	display: none;
+}
+
+.dataPadding{
+	padding: 13px;
+}
+
+input[type=button].deleteBtn{
+background-color: orange;
+width: 10%;
+padding: 7px;
+margin-left: 10px;
+
+}
+
+input[type=button].deleteBtn2{
+background-color: orange;
+width: 5%;
+padding: 7px;
+margin-left: 10px;
+float: right;
+
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+		.right-section-half{
+			margin-top:10px;
+			width: 100%;
+		}
+
+		.left-section-half{
+		 margin-top:10px;
+		 width: 100%;
+		}
+		.left-section{
+			width: 100%;
+		}
+
+		.right-section{
+			width: 100%;
+			text-align: left;
+		}
+
+		input[type=text]{
+		    width: 100%;
+		    padding: 12px 20px;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+				margin-top: 10px;
+
+		}
+}

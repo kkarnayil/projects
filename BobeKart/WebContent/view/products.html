@@ -1,0 +1,47 @@
+<!-- Carousal Start -->
+<div id="myCarousel" class="carousel slide" style="margin-top:-21px" data-ride="carousel">
+   <!-- Carousel indicators -->
+   <ol class="carousel-indicators" style="margin-left: -41px">
+      <li data-target="#myCarousel" class="car_li {{product.class}}" ng-repeat="product in products" data-slide-to="{{product.id-1}}"></li>
+   </ol>
+   <!-- Wrapper for carousel items -->
+   <div class="carousel-inner">
+      <div class="col-md-12 item {{product.class}}"  ng-repeat="product in products">
+         <img style="float:left;margin-left: -135px;" class="car_image" src="{{product.image}}" alt="{{produce.id}} Slide">
+         <p class="car_p">{{product.name}} at ${{product.price}}
+            </br><button class="btn btn-success" ng-click="addToCart(product)"> BUY ITEM</button>
+         </p>
+      </div>
+   </div>
+   <!-- Carousel controls -->
+   <span class="carousel-control left" data-target="#myCarousel" data-slide="prev">
+   <span class="glyphicon glyphicon-chevron-left"></span>
+   </span>
+   <span class="carousel-control right" data-target="#myCarousel" data-slide="next">
+   <span class="glyphicon glyphicon-chevron-right"></span>
+   </span>
+</div>
+<!-- Carousal Ends -->
+
+<div class="container" style="margin-top:20px">
+   <div class="row">
+      <!-- BEGIN PRODUCTS -->
+      <div class="col-md-3 col-sm-6" ng-repeat="product in products">
+         <span class="thumbnail">
+            <img ng-src="{{product.image}}" alt="{{product.name}}" style="height:150px">
+            <h4>{{product.name}}</h4>
+            <p style="height: 86px;text-overflow: ellipsis;">{{product.desc}}</p>
+            <hr class="line">
+            <div class="row">
+               <div class="col-md-6 col-sm-6">
+                  <p class="price">${{product.price}}</p>
+               </div>
+               <div class="col-md-6 col-sm-6">
+                  <button class="btn btn-success right" ng-click="addToCart(product)">BUY ITEM</button>
+               </div>
+            </div>
+         </span>
+      </div>
+      <!-- END PRODUCTS -->
+   </div>
+</div>
