@@ -1,3 +1,9 @@
+/**
+ * Quiz Service
+ * @private
+ * @method service
+ * @param {Object} 'QuizService'
+ */
 quiz_app.service('QuizService', function () {
 
     console.log("Quiz Service loaded.");
@@ -84,18 +90,38 @@ quiz_app.service('QuizService', function () {
         }
                   ];
 
+    /**
+     * Description for registerUser
+     * @public
+     * @method registerUser
+     * @param {Object} user
+     * @param {Object} promise
+     */
     this.registerUser = function (user, promise) {
         console.log("Service register user: " + JSON.stringify(user));
         user_data.user = user;
         promise();
     };
 
+    /**
+     * Description for getQuestions
+     * @public
+     * @method getQuestions
+     * @return [] of questions
+     */
     this.getQuestions = function () {
         console.log("Get questions.");
         var _questions = jQuery.extend(true, [], questions);
         return _questions;
     };
 
+
+    /**
+     * Description for submitUserScore
+     * @public
+     * @method submitUserScore
+     * @param {Object} user
+     */
     this.submitUserScore = function (user) {
         var _user = jQuery.extend(true, {}, user);
         users_scores.push(_user);
@@ -103,8 +129,14 @@ quiz_app.service('QuizService', function () {
         console.log("Data updated in local storage.")
     };
 
-    this.getUserScores = function () {
 
+    /**
+     * Method to return scores of all users from local storage
+     * @public
+     * @method getUserScores
+     * @return [] of user scores
+     */
+    this.getUserScores = function () {
         var _users = localStorage.getItem('user_data');
         if (null != _users) {
             console.log("Data present in local storage: " + _users);

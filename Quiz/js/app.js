@@ -4,6 +4,12 @@ console.log('App loaded.');
 var quiz_app = angular.module('quiz-app', ['ngRoute']);
 console.log('Angular loaded.');
 
+/**
+ * Route Configuration
+ * @private
+ * @method config
+ * @param {Object} function ($routeProvider
+ */
 quiz_app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {

@@ -1,5 +1,11 @@
 /**
- *
+ * Controller handling App logics
+ * @private
+ * @method controller
+ * @param {Object} 'QuizController'
+ * @param {Object} ['$scope'
+ * @param {Object} '$location'
+ * @param {Object} 'QuizService'
  */
 quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', function ($scope, $location, QuizService) {
     console.log('Quiz Controller loaded.');
@@ -15,7 +21,9 @@ quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', fun
 
 
     /**
-     *
+     * Method to register user
+     * @private
+     * @method registerUser
      */
     $scope.registerUser = function () {
         console.log("Controller register user: " + JSON.stringify($scope.user));
@@ -26,10 +34,21 @@ quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', fun
 
     };
 
+    /**
+     * Method to get the Questions
+     * @private
+     * @method getQuestions
+     * @return [] od question
+     */
     $scope.getQuestions = function () {
         $scope.questions = QuizService.getQuestions();
     };
 
+    /**
+     * Method to calculate score of the user
+     * @private
+     * @method calculateScore
+     */
     $scope.calculateScore = function () {
         console.log("Calculate Score called...");
         $scope.user.score = 0;
@@ -46,6 +65,12 @@ quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', fun
         $location.path("/user_result");
     };
 
+    /**
+     * Method to get all user scores
+     * @private
+     * @method getUsersScore
+     * @return [] of users scores.
+     */
     $scope.getUsersScore = function () {
         $scope.usersScores = QuizService.getUserScores();
         $scope.usersScores.sort(sortScore);
@@ -53,6 +78,11 @@ quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', fun
         $scope.isResults = "active";
     };
 
+    /**
+     * Method called on template load
+     * @private
+     * @method init
+     */
     $scope.init = function () {
         $scope.user = {
             email: "",
@@ -63,6 +93,14 @@ quiz_app.controller('QuizController', ['$scope', '$location', 'QuizService', fun
         $scope.isResults = "";
     };
 
+    /**
+     * Description for sortScore
+     * @private
+     * @method sortScore
+     * @param {Object} a
+     * @param {Object} b
+     * @return {Object} description
+     */
     var sortScore = function (a, b) {
         var aScore = a.score;
         var bScore = b.score;
