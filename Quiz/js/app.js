@@ -1,28 +1,24 @@
 console.log('App loaded.');
 
-var quiz_app = angular.module('quiz-app',['ngRoute']);
-
-
+/*global angular */
+var quiz_app = angular.module('quiz-app', ['ngRoute']);
 console.log('Angular loaded.');
 
-quiz_app.config(function($routeProvider) {
+quiz_app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl : "views/user_registration.html",
-
+            templateUrl: "views/user_registration.html"
         })
         .when("/step1", {
-            templateUrl : "views/quiz_step1.html",
+            templateUrl: "views/quiz_step1.html"
         })
         .when("/step2", {
-            templateUrl : "views/quiz_step2.html",
+            templateUrl: "views/quiz_step2.html"
         })
         .when("/user_result", {
-            templateUrl : "views/user_result.html",
+            templateUrl: "views/user_result.html"
         })
         .when("/user_results", {
-            templateUrl : "views/users_result.html",
-        })
-
-
+            templateUrl: "views/users_result.html"
+        });
 });
