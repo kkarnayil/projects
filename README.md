@@ -11,3 +11,6 @@ Angular JS Projects
    
 4) TaskApp: 
    Client side application made to manage Tasks. Gulp used for build management.
+   
+5) UserManagement:
+   Client side code to do CRUD operations using javascript, jquery, localstorage.
