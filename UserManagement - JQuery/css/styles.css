@@ -1,0 +1,34 @@
+.hideFromMobile {
+   display: none;
+}
+
+.mobiletopmargin2{
+    margin-top: 2px;
+}
+
+@media only screen and (min-width: 768px) {
+    .dataPadding {
+        padding: 30px;
+    }
+
+    .table > tbody > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: middle;
+        border-top: 1px solid #ddd;
+    }
+
+    .table > tbody > tr > th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: middle;
+    }
+
+    .navbar {
+        border-radius: 0px;
+    }
+
+    .leftmargin3 {
+        margin-left: 3px;
+    }
+}

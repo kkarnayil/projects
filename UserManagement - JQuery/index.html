@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="libs/vendor/css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="libs/vendor/js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="libs/vendor/js/bootstrap.min.js"></script>
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">JS User Management using Local Storage</a></div>
+        </div>
+    </nav>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-4 dataPadding">
+            <div class="well">
+                <form>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name" autofocus
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="LastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hobbies</label></br>
+                        <label class="checkbox-inline">
+                            <input name="hobbies" type="checkbox" id="Cricket" value="Cricket"> Cricket
+                        </label>
+                        <label class="checkbox-inline">
+                            <input name="hobbies" type="checkbox" id="Others" value="Singing"> Singing
+                        </label>
+                        <label class="checkbox-inline">
+                            <input name="hobbies" type="checkbox" id="Swimming" value="Swimming"> Swimming
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Gender</label></br>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="Male" value="Male" checked> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" id="Female" value="Female"> Female
+                        </label>
+                    </div>
+
+
+                    <button type="button" class="btn btn-default" id="addUserBtn">Add</button>
+                    <button type="button" class="btn btn-info" id="clearFormBtn"> Clear</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8 dataPadding">
+            <label>Users</label></br>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="hideFromMobile">#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Hobbies</th>
+                    <th>Gender</th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody id="usersTable">
+
+
+                </tbody>
+                <tbody id="noUsersRow" class="hide">
+                <tr>
+                    <td colspan="6">
+                        No User Data Available
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/common/Utils.js"></script>
+<script type="text/javascript" src="js/controller/AppController.js"></script>
+<script type="text/javascript" src="js/listeners/Listners.js"></script>
+<script type="text/javascript" src="js/dao/StorageService.js"></script>
+<script type="text/javascript" src="js/service/UserService.js"></script>
+<script type="text/javascript" src="js/controller/AppController.js"></script>
+
+<script type="text/javascript" src="js/model/User.js"></script>
+
+
+</body>
+</html>
