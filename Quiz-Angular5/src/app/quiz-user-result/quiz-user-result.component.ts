@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../services/quiz.service';
-import { Candidate } from '../vo/candidate'
+import {Component, OnInit} from '@angular/core';
+import {QuizService} from '../services/quiz.service';
+import {Candidate} from '../vo/candidate';
 
 
 @Component({
@@ -12,12 +12,12 @@ export class QuizUserResultComponent implements OnInit {
 
   private candidate: Candidate;
   private questions;
-    
-  constructor(private service: QuizService) { }
+
+  constructor(private service: QuizService) {}
 
   ngOnInit() {
-      this.candidate = this.service.getCandidate();
-      this.questions = this.service.getQuestions();
+    this.candidate = this.service.getCandidate();
+    this.questions = this.service.getQuestions();
   }
 
 }

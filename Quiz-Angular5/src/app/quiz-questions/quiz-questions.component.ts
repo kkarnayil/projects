@@ -1,7 +1,7 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Router } from "@angular/router";
-import { QuizService } from '../services/quiz.service';
-import { Candidate } from '../vo/candidate'
+import {Component, OnInit, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {QuizService} from '../services/quiz.service';
+import {Candidate} from '../vo/candidate';
 
 @Component({
   selector: 'app-quiz-questions',
@@ -10,35 +10,35 @@ import { Candidate } from '../vo/candidate'
 })
 export class QuizQuestionsComponent implements OnInit {
 
-  private questions;    
- 
+  private questions;
+
   private candidate: Candidate;
-    
-  constructor(private router : Router, private service: QuizService) {}
+
+  constructor(private router: Router, private service: QuizService) {}
 
   ngOnInit() {
-     this.questions = this.service.getQuestions();
-     this.candidate = this.service.getCandidate();    
-  };
-    
+    this.questions = this.service.getQuestions();
+    this.candidate = this.service.getCandidate();
+  }
+
   calculateScore() {
-        console.log("Calculate Score called...");
-        let score = 0;
-        for (var i = 0; i < this.questions.length; i++) {
+    console.log('Calculate Score called...');
+    let score = 0;
+    for (let i = 0; i < this.questions.length; i++) {
 
-            if (undefined != this.questions[i].selectedAnswer) {
+      if (undefined !== this.questions[i].selectedAnswer) {
 
-                if (this.questions[i].correctAnswer === parseInt(this.questions[i].selectedAnswer)) {
-                    score++;
-                }
-            }
+        if (this.questions[i].correctAnswer === parseInt(this.questions[i].selectedAnswer, 1)) {
+          score++;
         }
-        
-        this.candidate.setScore(score);
-        this.service.submitCandidateScore(this.candidate);
-        this.router.navigate(['user-result']);
-        
-    };
+      }
+    }
+
+    this.candidate.setScore(score);
+    this.service.submitCandidateScore(this.candidate);
+    this.router.navigate(['user-result']);
+
+  }
 
 
 }

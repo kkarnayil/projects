@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../services/quiz.service';
+import {Component, OnInit} from '@angular/core';
+import {QuizService} from '../services/quiz.service';
 
 @Component({
   selector: 'app-quiz-results',
@@ -9,19 +9,19 @@ import { QuizService } from '../services/quiz.service';
 export class QuizResultsComponent implements OnInit {
 
   private candidateScores;
- 
-  constructor(private service: QuizService) { }
+
+  constructor(private service: QuizService) {}
 
   ngOnInit() {
-       this.service.init();
-       this.candidateScores = this.service.getCandidateScores();
-       this.candidateScores.sort(this.sortScores);
-      console.log(this.candidateScores);
+    this.service.init();
+    this.candidateScores = this.service.getCandidateScores();
+    this.candidateScores.sort(this.sortScores);
+    console.log(this.candidateScores);
   }
 
- sortScores (a, b) {
-        var aScore = a.score;
-        var bScore = b.score;
-        return ((aScore < bScore) ? 1 : ((aScore > bScore) ? -1 : 0));
- } 
+  sortScores(a, b) {
+    const aScore = a.score;
+    const bScore = b.score;
+    return ((aScore < bScore) ? 1 : ((aScore > bScore) ? -1 : 0));
+  }
 }
