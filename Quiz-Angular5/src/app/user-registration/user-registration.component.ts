@@ -25,6 +25,7 @@ export class UserRegistrationComponent implements OnInit {
     console.log('Register Candidate: ' + JSON.stringify(this.candidate));
     this.service.registerCandidate(this.candidate);
     this.router.navigate(['questions']);
+    console.log('User Registered');
   }
 
 }
