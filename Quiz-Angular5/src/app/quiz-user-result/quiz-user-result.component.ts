@@ -10,8 +10,8 @@ import {Candidate} from '../vo/candidate';
 })
 export class QuizUserResultComponent implements OnInit {
 
-  private candidate: Candidate;
-  private questions;
+  candidate: Candidate;
+  questions;
 
   constructor(private service: QuizService) {}
 

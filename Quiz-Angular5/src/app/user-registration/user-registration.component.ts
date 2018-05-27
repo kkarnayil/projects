@@ -9,9 +9,9 @@ import {Candidate} from '../vo/candidate';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit {
-  private registrationFormTitle;
-  private registrationFormDescription;
-  private candidate;
+  registrationFormTitle;
+  registrationFormDescription;
+  candidate;
 
   constructor(private router: Router, private service: QuizService) {}
 

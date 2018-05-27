@@ -1,9 +1,9 @@
 export class Candidate {
 
-  private firstName: string;
-  private lastName: string;
-  private userId: string;
-  private score: number;
+  firstName: string;
+  lastName: string;
+  userId: string;
+  score: number;
 
   constructor()
   constructor(firstName: string, lastName: string, userId: string)

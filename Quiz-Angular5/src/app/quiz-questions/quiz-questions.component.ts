@@ -10,9 +10,9 @@ import {Candidate} from '../vo/candidate';
 })
 export class QuizQuestionsComponent implements OnInit {
 
-  private questions;
+  questions;
 
-  private candidate: Candidate;
+  candidate: Candidate;
 
   constructor(private router: Router, private service: QuizService) {}
 
@@ -28,7 +28,7 @@ export class QuizQuestionsComponent implements OnInit {
 
       if (undefined !== this.questions[i].selectedAnswer) {
 
-        if (this.questions[i].correctAnswer === parseInt(this.questions[i].selectedAnswer, 1)) {
+        if (this.questions[i].correctAnswer === parseInt(this.questions[i].selectedAnswer, 0)) {
           score++;
         }
       }

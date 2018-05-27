@@ -8,15 +8,31 @@ import {QuizService} from '../services/quiz.service';
 })
 export class QuizResultsComponent implements OnInit {
 
-  private candidateScores;
+  tableHeader = 'Leaders';
+  candidateScores = [];
 
   constructor(private service: QuizService) {}
 
   ngOnInit() {
     this.service.init();
-    this.candidateScores = this.service.getCandidateScores();
+    this.candidateScores = this.filterScores(this.service.getCandidateScores());
     this.candidateScores.sort(this.sortScores);
     console.log(this.candidateScores);
+  }
+
+  filterScores(scores: any): any {
+    const currentPath = window.location.pathname;
+    let filterLength = scores.lenth;
+    this.tableHeader = 'User Scores';
+    switch (currentPath) {
+      case ('/user-results'):
+        filterLength = scores.length;
+        break;
+      default:
+        filterLength = scores.length >= 5 ? 5 : scores.length;
+        this.tableHeader = 'Leaders';
+    }
+    return scores.splice(0 , filterLength);
   }
 
   sortScores(a, b) {
