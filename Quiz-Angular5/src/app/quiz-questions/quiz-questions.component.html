@@ -1,0 +1,28 @@
+<div class="panel panel-default questions-padding">
+    <div class="panel-body">
+        <div>
+            <ol>
+                <li *ngFor="let question of questions">
+                    <span>{{question.question | uppercase}}?</span>
+                    <div class="padding-options" *ngFor="let option of question.options">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{{question.id}}" [(ngModel)]="question.selectedAnswer"
+                                       value="{{option.id}}"> 
+                                {{option.option | uppercase}} 
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                </li>
+                <br>
+            </ol>
+        </div>
+
+        <div class="col-md-6 order-md-1">
+            <input type="button" (click)="calculateScore()" value="Calculate Score" class="btn btn-primary  btn-lg btn-block" />
+
+        </div>
+
+    </div>
+</div>

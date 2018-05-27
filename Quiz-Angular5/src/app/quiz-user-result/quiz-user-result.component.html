@@ -1,0 +1,13 @@
+<div class="jumbotron top-gap">
+    <div class="container" *ngIf="undefined != candidate">
+        <h1>Hi {{candidate.firstName}}, {{candidate.lastName}} </h1>
+        <p>Your Score is {{candidate.score}} / {{questions.length}}</p>
+        <p><a class="btn btn-primary btn-lg" href="user-results" role="button">Check your Rankings</a></p>
+    </div>
+    <!-- If page Refreshed -->
+    <div class="container" *ngIf="undefined == candidate">
+        <h1>Register First!</h1>
+        <p>Register to Start Quiz!</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Register</a></p>
+    </div>
+</div>
