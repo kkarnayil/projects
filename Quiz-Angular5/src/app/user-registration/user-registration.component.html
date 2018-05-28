@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-8 order-md-1 mb-4">
             <h4 class="mb-3">Candidate Information</h4>
-            <form class="needs-validation" (submit)='registerCandidate($event)'>
+            <form class="needs-validation" (ngSubmit)='registerCandidate($event)' ngNativeValidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>

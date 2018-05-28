@@ -1,9 +1,7 @@
 <div class="panel panel-default questions-padding">
     <div class="panel-body">
         <div>
-            <ol>
-                <li>
-                    <span>{{question.question | uppercase}}?</span>
+                    <span>{{questionIndex}}. {{question.question | uppercase}}?</span>
                     <div class="padding-options" *ngFor="let option of question.options">
                         <div class="radio">
                             <label>
@@ -14,9 +12,7 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                </li>
-               
-            </ol>
+             
         </div>
 
         <div class="col-md-6 order-md-1">

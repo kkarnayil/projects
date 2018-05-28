@@ -19,11 +19,9 @@ export class QuizQuestionComponent implements OnInit {
   questionIndex: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: QuizService, private routeService: RouteService) {
-    console.log('in constructor');
     this.route.queryParams.subscribe(params => {
 
       const previousUrl = this.routeService.getPreviousUrl();
-      console.log(previousUrl);
       if (previousUrl === '/user-result') {
         this.router.navigate(['user-result']);
       }
@@ -40,7 +38,6 @@ export class QuizQuestionComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('in init');
     this.candidate = this.service.getCandidate();
     if (undefined === this.candidate) {
       console.error('Candidate not registered.');

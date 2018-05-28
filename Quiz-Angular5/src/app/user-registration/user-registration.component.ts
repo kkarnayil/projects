@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {FormGroup} from '@angular/forms';
 import {QuizService} from '../services/quiz.service';
 import {Candidate} from '../vo/candidate';
 
@@ -9,15 +10,17 @@ import {Candidate} from '../vo/candidate';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit {
-  registrationFormTitle;
-  registrationFormDescription;
-  candidate;
+  registrationFormTitle: string;
+  registrationFormDescription: string;
+  candidate: Candidate;
 
-  constructor(private router: Router, private service: QuizService) {}
-
-  ngOnInit() {
+  constructor(private router: Router, private service: QuizService) {
     this.registrationFormTitle = 'Quiz Registration';
     this.registrationFormDescription = 'Start Quiz by filling below form';
+
+  }
+
+  ngOnInit() {
     this.candidate = new Candidate();
     this.service.reset();
   }

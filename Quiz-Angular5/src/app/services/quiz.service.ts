@@ -185,7 +185,7 @@ export class QuizService {
     return 1;
   }
 
-  getCorrectAnswerId(questionId) {
+  private getCorrectAnswerId(questionId) {
     for (let i = 0; i < this.questions.length; i++) {
       if (this.questions[i].id === parseInt(questionId, 0)) {
         return this.questions[i].correctAnswer;
