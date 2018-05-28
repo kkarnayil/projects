@@ -19,12 +19,13 @@ export class UserRegistrationComponent implements OnInit {
     this.registrationFormTitle = 'Quiz Registration';
     this.registrationFormDescription = 'Start Quiz by filling below form';
     this.candidate = new Candidate();
+    this.service.reset();
   }
 
   registerCandidate(event) {
     console.log('Register Candidate: ' + JSON.stringify(this.candidate));
     this.service.registerCandidate(this.candidate);
-    this.router.navigate(['questions']);
+    this.router.navigate(['questions'], {queryParams: {question: '1'}});
     console.log('User Registered');
   }
 

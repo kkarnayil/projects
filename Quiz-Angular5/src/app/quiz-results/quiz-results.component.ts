@@ -15,8 +15,9 @@ export class QuizResultsComponent implements OnInit {
 
   ngOnInit() {
     this.service.init();
-    this.candidateScores = this.filterScores(this.service.getCandidateScores());
+    this.candidateScores = this.service.getCandidateScores();
     this.candidateScores.sort(this.sortScores);
+    this.candidateScores = this.filterScores(this.candidateScores);
     console.log(this.candidateScores);
   }
 

@@ -14,6 +14,7 @@ export class QuizQuestionsComponent implements OnInit {
 
   candidate: Candidate;
 
+  
   constructor(private router: Router, private service: QuizService) {}
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class QuizQuestionsComponent implements OnInit {
     for (let i = 0; i < this.questions.length; i++) {
 
       if (undefined !== this.questions[i].selectedAnswer) {
-
+      
         if (this.questions[i].correctAnswer === parseInt(this.questions[i].selectedAnswer, 0)) {
           score++;
         }

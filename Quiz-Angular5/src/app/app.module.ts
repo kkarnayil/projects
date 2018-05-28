@@ -16,6 +16,8 @@ import {QuizUserResultsComponent} from './quiz-user-results/quiz-user-results.co
 
 // services
 import {QuizService} from './services/quiz.service';
+import {RouteService} from './services/route.service';
+import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {QuizService} from './services/quiz.service';
     QuizHeaderComponent,
     QuizFooterComponent,
     QuizUserResultComponent,
-    QuizUserResultsComponent
+    QuizUserResultsComponent,
+    QuizQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import {QuizService} from './services/quiz.service';
     RouterModule,
     FormsModule
   ],
-  providers: [QuizService],
+  providers: [QuizService, RouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -80,7 +80,7 @@ export class QuizService {
     }
   ];
 
-
+  private candidateAnswers = [];
   private candidateScores = [];
 
   private candidate: Candidate;
@@ -100,8 +100,14 @@ export class QuizService {
 
   }
 
+  reset() {
+    this.candidate = undefined;
+    this.candidateAnswers = [];
+  }
+
   registerCandidate(candidate) {
     this.candidate = candidate;
+    this.candidateAnswers = [];
   }
 
   getCandidate() {
@@ -112,6 +118,22 @@ export class QuizService {
     console.log('Get questions.');
     const _questions = Object.assign([], this.questions);
     return _questions;
+  }
+
+  getQuestionsLength() {
+    console.log('Get questions Length.');
+    const _questions = Object.assign([], this.questions);
+    return _questions.length;
+  }
+
+  getQuestion(index) {
+    console.log('Get question index: ' + index);
+    const _questions = Object.assign([], this.questions);
+    if (index <= _questions.length) {
+      return _questions[index - 1];
+    } else {
+      throw new Error('Question not found');
+    }
   }
 
   submitCandidateScore(candidate) {
@@ -126,5 +148,50 @@ export class QuizService {
     const _candidateScores = Object.assign([], this.candidateScores);
     return _candidateScores;
   }
+
+  storeUserAnswer(answerObj) {
+    let questionFound = false;
+    for (let i = 0; i < this.candidateAnswers.length; i++) {
+      if (answerObj.questionId === this.candidateAnswers[i].questionId) {
+        this.candidateAnswers[i].answerId = answerObj.answerId;
+        questionFound = true;
+        break;
+      }
+    }
+    if (!questionFound) {
+      this.candidateAnswers.push(answerObj);
+    }
+  }
+
+  getUserAnswers() {
+    return this.candidateAnswers;
+  }
+
+  calculateCandidateScore() {
+    console.log(this.candidateAnswers);
+    let score = 0;
+    for (let i = 0; i < this.candidateAnswers.length; i++) {
+
+      if (undefined !== this.candidateAnswers[i].answerId) {
+        const correctAnswerId = this.getCorrectAnswerId(this.candidateAnswers[i].questionId);
+        if (correctAnswerId === parseInt(this.candidateAnswers[i].answerId, 0)) {
+          score++;
+        }
+      }
+    }
+
+    this.candidate.setScore(score);
+    this.submitCandidateScore(this.candidate);
+    return 1;
+  }
+
+  getCorrectAnswerId(questionId) {
+    for (let i = 0; i < this.questions.length; i++) {
+      if (this.questions[i].id === parseInt(questionId, 0)) {
+        return this.questions[i].correctAnswer;
+      }
+    }
+  }
+
 
 }
