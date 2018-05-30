@@ -3,7 +3,7 @@
 
 # 1) Quiz:
     Simple Client side Quiz application made using AngularJs and Bootstrap.
-    kartikkarnayil.com/Quiz
+    [Demo](http://www.kartikkarnayil.com/Quiz)
    
 # 2) WebApp: 
     Complete End to End application built using AngularJs, Spring and Hibernate.
