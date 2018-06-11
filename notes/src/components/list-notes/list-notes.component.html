@@ -1,0 +1,17 @@
+<section>
+    <b-card-group columns>
+        <b-card :bg-variant="item.color" text-variant="white" class="text-center" v-for="(item,index) in notes">
+            <p class="card-text"> {{item.note}}</p>
+            <b-button v-on:click="deleteNote(index)" :variant="item.color" class="delete">X</b-button>
+        </b-card>
+    </b-card-group>
+
+
+    <div v-if="notes.length==0">
+        <b-jumbotron header="No Notes :(" lead="Make life easier by creating notes.">
+            <p>For more information visit website</p>
+            <b-btn variant="primary" href="/">More Info</b-btn>
+        </b-jumbotron>
+    </div>
+
+</section>
