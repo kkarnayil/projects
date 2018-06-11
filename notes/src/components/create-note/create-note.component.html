@@ -1,0 +1,8 @@
+<div>
+    <b-form @submit="onSubmit" @reset="onReset">
+        <b-form-group id="newNoteGroup" label="Notes" label-for="newNote" description="">
+            <b-form-input id="newNote" v-model="form.note" type="text" placeholder="Create New" required></b-form-input>
+        </b-form-group>
+        <b-button type="submit" variant="primary" class="btn">CREATE</b-button>
+    </b-form>
+</div>
