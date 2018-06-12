@@ -1,5 +1,6 @@
 # angularjs
     Angular JS Projects
+    [Demo](http://www.kartikkarnayil.com/Quiz)
 
 # 1) Quiz:
     Simple Client side Quiz application made using AngularJs and Bootstrap.
@@ -18,3 +19,6 @@
     
 # 6) Quiz - Angular 5
     Same app as 1) but implemented using Angular5 and Bootstrap 4
+
+# 7) Notes - Vue.js
+    Simple Notes Application using Vue.js
