@@ -1,0 +1,19 @@
+
+.App-header {
+   background-color: #20232a;
+    color: #ffffff;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+
+.navbar {
+    margin-bottom: 0px;
+    }
+
+.navbar-inverse {
+    background-color: #20232a;
+    border-color: #20232a;
+    border-radius: 0px;
+}

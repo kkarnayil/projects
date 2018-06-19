@@ -1,0 +1,9 @@
+.teamImage{
+    width: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .teamImage {
+       width: 70px;
+    }
+}

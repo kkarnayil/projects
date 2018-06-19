@@ -1,0 +1,93 @@
+html{
+	font-family: Monospace;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+.App-Container{
+  font-size: xx-large;
+  padding-top:20px;
+    background-color: #f7f7f7;
+    position:absolute;
+    height:100%;
+    width:99.81%;
+}
+
+.gap{
+  margin-top:15px;
+}
+
+.btnMargin{
+  margin-bottom: 5px;
+}
+
+.Flag-Image{
+  width: 64px;
+    height: 32px;
+        
+}
+
+.center{
+  text-align: center;
+}
+
+.fontFam{
+      font-style: oblique;
+}
+
+.well{
+    color: white;
+    background-image: linear-gradient(to bottom,#1b2b34 0,#1b2b34 100%);
+    margin-bottom: 5px;
+}
+
+.panel-default {
+    border-color: #1b2b34;
+    }
+
+.panel-default>.panel-heading {
+    background-image: linear-gradient(to bottom,#1b2b34 0,#1b2b34 100%);
+    color: white;
+   }
+
+.margin-mobile{
+   margin-top: 12px;
+ }
+
+.Carousel{
+  margin-bottom: 10px;
+}
+
+.carousel-indicators {
+    bottom: -3px;
+  }
+
+
+.panel-body {
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .CarouselItem {
+        height: 300px;
+    }
+
+  .carousel-caption {
+    right: 20%;
+    left: 20%;
+    padding-bottom: 70px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+    .mobileMarginLeft {
+       margin-left: 13px;
+    }
+}
+
