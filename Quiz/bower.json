@@ -1,0 +1,12 @@
+{
+  "name": "quiz",
+  "description": "Quiz Project",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.7.2",
+    "angular-route": "~1.7.2",
+    "angular-sanitize": "~1.7.2",
+    "angular-loader": "~1.7.2",
+    "bootstrap": "3.3.7"
+  }
+}

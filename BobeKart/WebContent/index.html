@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html ng-app="bobekart">
+
 <head>
-<meta charset="UTF-8">
-<title>Bobekart Home</title>
+    <meta charset="UTF-8">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<!-- Add any new CSS below -->
-<link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <title>Bobekart Home</title>
 
-<!-- JQuery script -->
-<script type="text/javascript" src="js/lib/jquery-3.2.0.min.js"></script>
-<!-- Bootstrap script -->
-<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-<!-- Angular JS script -->
-<script type="text/javascript" src="js/lib/angular.min.js"></script>
-<script type="text/javascript" src="js/lib/angular-route.js"></script>
-<script type="text/javascript" src="js/appboot.js"></script>
-<script type="text/javascript" src="js/services/logservice.js"></script>
-<script type="text/javascript" src="js/services/productservice.js"></script>
-<script type="text/javascript" src="js/services/cartservice.js"></script>
-<script type="text/javascript" src="js/controllers/headercontroller.js"></script>
-<script type="text/javascript" src="js/controllers/productcontroller.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- Add any new CSS below -->
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+
+    <!-- JQuery script -->
+    <script type="text/javascript" src="js/lib/jquery-3.2.0.min.js"></script>
+    <!-- Bootstrap script -->
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <!-- Angular JS script -->
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-route.js"></script>
+    <script type="text/javascript" src="js/appboot.js"></script>
+    <script type="text/javascript" src="js/services/logservice.js"></script>
+    <script type="text/javascript" src="js/services/productservice.js"></script>
+    <script type="text/javascript" src="js/services/cartservice.js"></script>
+    <script type="text/javascript" src="js/controllers/headercontroller.js"></script>
+    <script type="text/javascript" src="js/controllers/productcontroller.js"></script>
 </head>
+
 <body>
-	<div id="header" ng-include="'view/header.htm'"></div>
-	<div id="body" ng-view></div>
+    <div id="header" ng-include="'view/header.htm'"></div>
+    <div id="body" ng-view></div>
 </body>
+
 </html>

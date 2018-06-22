@@ -1,0 +1,37 @@
+<div class="page-header" ng-init="onInit()">
+    
+    <h1><span ng-show="$ctrl.page === 'home'">
+     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    </span>{{title}}</h1>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div ng-show="candidates.length > 0">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="candidate in candidates track by $index">
+                        <th scope="row">{{$index+1}}</th>
+                        <td>{{candidate.name}}</td>
+                        <td>{{candidate.email}}</td>
+                        <td>{{candidate.score}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div ng-show="candidates.length == 0">
+            No user data found.
+        </div>
+    </div>
+    <div ng-show="$ctrl.page != 'home'">
+        <p><a style="margin-left: 14px" href="#!home" role="button">Home</a></p>
+    </div>
+</div>

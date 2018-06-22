@@ -1,0 +1,42 @@
+/* app css stylesheet */
+
+body{
+	color:#945f5f;
+}
+.navbar{
+	border-radius: 0px;
+}
+
+
+.form-control {
+    margin-top: 5px;
+}
+
+.gap5{
+	margin-top:5px;
+}
+
+.padding-options{
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.navbar-inverse{
+	background-color: #263238;
+	    color: rgba(255,255,255,0.87);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 56px;
+    padding: 0 24px;
+    text-transform: uppercase;
+    transition: all .3s;
+}
+
+a {
+    color: rgba(255,255,255,0.87);
+    text-decoration: none;
+}
+
+.progress-bar {
+     background-color: #945f5f;
+ }

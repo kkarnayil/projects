@@ -1,0 +1,40 @@
+<div class="panel panel-default questions-padding" ng-init="init()">
+    <div class="panel-body">
+        
+        <ol class="breadcrumb">
+          <li><h4> {{questionNumber}}. {{question.question | uppercase}}? </h4></li>
+        </ol>
+
+        <div>                    
+                    <div class="padding-options" ng-repeat="option in question.options">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{{question.id}}" ng-model="question.selectedAnswer"
+                                       value="{{option.id}}"> 
+                                {{option.option | uppercase}} 
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+             
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemax="100" ng-style="{{progressPercentageStyle}}">
+                        <span class="sr-only">{{progressPercentage}}% Complete</span>
+                      </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-xs-12 pull-right">
+                <button type="button" ng-click="nextQuestion()" value="Next" class="btn btn-primary  btn-lg btn-block" >
+                 Next <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span>                      
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
