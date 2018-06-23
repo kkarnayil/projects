@@ -14,6 +14,7 @@ angular.module('myApp', [
   'view.results',
   'component.candidateregistration',
   'component.candidatescores',
+  'component.candidatescore'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
@@ -21,7 +22,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $routeProvider.otherwise({redirectTo: '/home'});
 
 }]).
-run(['AppLogger', 'SessionService', '$rootScope', function (AppLogger, SessionService, $rootScope) {
+run(['AppLogger', 'SessionService', '$rootScope', '$location', function (AppLogger, SessionService, $rootScope, $location) {
 
     $rootScope.$on('$routeChangeStart', function($event, next, current) {
         if(undefined !== next && undefined !== next.$$route){ 
@@ -30,12 +31,14 @@ run(['AppLogger', 'SessionService', '$rootScope', function (AppLogger, SessionSe
             if(SessionService.isRestrictedPage(routeInfo.originalPath) && !SessionService.isAuthenticated()){
               AppLogger.error('Page Access Denied');
               $event.preventDefault();
+              $location.path('/access-denied');
             }
 
             if('/question' === routeInfo.originalPath){
-                if(SessionService.quizSessionOver){
+                if(!SessionService.canAccessQuiz()){
                   AppLogger.error('Quiz Session Over. Page Access Denied');
                   $event.preventDefault();
+                  $location.path('/access-denied');
                 }
             }
           }

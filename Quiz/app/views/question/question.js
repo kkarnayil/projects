@@ -11,6 +11,8 @@ angular.module('view.question', [])
 
 .controller('QuestionController', ['$scope', '$location', 'AppLogger', 'QuizService', 'SessionService', function($scope, $location, AppLogger, QuizService, SessionService) {
 	
+    var self = this;
+
 	$scope.questionNumber = -1;
     $scope.totalQuestions = -1;
     $scope.progressPercentage = 0;
@@ -20,10 +22,9 @@ angular.module('view.question', [])
 
 	$scope.init = function (){
 		AppLogger.log('QuestionController Loaded');
-        $scope.totalQuestions = QuizService.getQuestionsLength();
         QuizService.onInit();
-        getQuestion();
-        	
+        $scope.totalQuestions = QuizService.getQuestionsLength();
+        self.getQuestion();        	
 	};
 
     $scope.nextQuestion = function(){
@@ -38,7 +39,7 @@ angular.module('view.question', [])
         } else {
           const response = QuizService.calculateCandidateScore();
           if (1 === response) {
-            SessionService.quizSessionOver = true;
+            SessionService.endQuizSession();
             $location.path('/result');
           }
         }
@@ -56,12 +57,13 @@ angular.module('view.question', [])
         } 
     };
 
-    var getQuestion = function(){
+     self.getQuestion = function(){
         var questionNumberObj = $location.search();
         if(undefined !== questionNumberObj){
             $scope.questionNumber = questionNumberObj.number;
             AppLogger.log('Getting Question: #'+$scope.questionNumber);
-            try{                    
+            try{
+                SessionService.quizSessionOver = false;               
                 $scope.question = QuizService.getQuestion($scope.questionNumber);
                 var userAnswer = QuizService.getCandidateAnswer($scope.questionNumber);
                 if(null != userAnswer){

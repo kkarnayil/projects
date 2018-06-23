@@ -4,13 +4,10 @@ angular.module('service.sessionservice', [])
 
 	var currentUser = null;
 	var isAuthenticated = false;
-
-	this.quizSessionOver = false;
+	var quizAccess = false;
 
 	this.init = function(){
 		
-		this.quizSessionOver = false;
-
 		if(null != currentUser && currentUser.email){
 			isAuthenticated = true;
 			return;
@@ -57,7 +54,19 @@ angular.module('service.sessionservice', [])
 		}else{
 			return false;
 		}
+	};
+
+	this.canAccessQuiz = function(){
+		return quizAccess;
 	}
+
+	this.endQuizSession = function(){
+		quizAccess = false;
+	};
+
+	this.startQuizSession = function(){
+		quizAccess = true;
+	};
 
 
 }]);

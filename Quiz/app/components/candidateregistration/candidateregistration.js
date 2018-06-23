@@ -5,7 +5,7 @@ angular.module("component.candidateregistration", [])
       templateUrl: 'components/candidateregistration/candidateregistration.html',
       controller: 'CandidateRegistrationController'
  })
- .controller('CandidateRegistrationController', ['$rootScope', '$scope', '$location', '$window', 'QuizService', 'AppLogger',function($rootScope, $scope, $location, $window,  QuizService, AppLogger) {
+ .controller('CandidateRegistrationController', ['$scope', '$location', 'QuizService', 'SessionService', 'AppLogger',function($scope, $location,  QuizService, SessionService, AppLogger) {
 
  	AppLogger.log('Candidate Registration Component Controller Loaded');
     
@@ -26,7 +26,7 @@ angular.module("component.candidateregistration", [])
     $scope.registerCandidate = function () {
         AppLogger.log("Register user: " + JSON.stringify($scope.user));
         QuizService.registerUser($scope.user, function (response) {
-        
+            SessionService.startQuizSession();
             AppLogger.log("Register User response: " + JSON.stringify(response));
             $location.path("/question/").search({number: 1});                
         });

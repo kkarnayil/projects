@@ -9,7 +9,6 @@ angular.module('controller.global', ['ngSanitize'])
 	$scope.isHome = 'active';
 	$scope.isResults = '';
 	$scope.user = null;
-	$scope.styleClass = "col-md-6";
 
 	$rootScope.$on("pageChanged", function(evt, current, previous){ 
 		if('/results' === current.$$route.originalPath){
@@ -19,21 +18,15 @@ angular.module('controller.global', ['ngSanitize'])
 			$scope.isResults = '';
 			$scope.isHome = 'active';
 		}
-
-		SessionService.init();
-
 		$scope.user = SessionService.getUser();
 
-		$scope.isLoggedIn = SessionService.isAuthenticated();
-		if($scope.isLoggedIn){
-			$scope.styleClass = "col-md-12";
-		}else{
-			$scope.styleClass = "col-md-6";
-		}
+		$scope.isLoggedIn = SessionService.isAuthenticated();		
 
 	});
 
 	$scope.onInit = function(){
+
+		SessionService.init();
 
 		$scope.brand = "KOKO Quiz";
 

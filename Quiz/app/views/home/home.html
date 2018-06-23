@@ -6,7 +6,11 @@
 			<candidate-registration></candidate-registration>
 		</div>
 
-		<div class="col-xs-12" ng-class="styleClass">	
+		<div class="col-xs-12 col-md-6" ng-show="isLoggedIn">	
+			<candidate-score page="home"></candidate-score>
+		</div>
+
+		<div class="col-xs-12 col-md-6">	
 			<candidate-scores page="home"></candidate-scores>
 		</div>
 	</div>

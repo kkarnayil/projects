@@ -16,7 +16,7 @@ angular.module("component.candidatescores", [])
 
  	$scope.onInit = function(){
  		
- 		AppLogger.log('CandidateScoresController Component Controller Loaded');
+ 		AppLogger.log('CandidateScores Component Controller Loaded');
  		
  		$scope.candidates = QuizService.getCandidateScores();
 

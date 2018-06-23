@@ -16,6 +16,7 @@ angular.module('view.result', [])
 
 	$scope.init = function(){
 		AppLogger.log("Result Controller Loaded");
+		SessionService.endQuizSession();
 		$scope.user = SessionService.getUser();
 		$scope.questions = QuizService.getQuestions();
 	};
