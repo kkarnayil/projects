@@ -1,13 +1,15 @@
 
 <section id="home">
+	
 	<div class="row">
-		<div class="col-md-6 col-xs-12">	
+		<div class="col-md-6 col-xs-12" ng-show="!isLoggedIn">	
 			<candidate-registration></candidate-registration>
 		</div>
-		<div class="col-md-6 col-xs-12">	
+
+		<div class="col-xs-12" ng-class="styleClass">	
 			<candidate-scores page="home"></candidate-scores>
 		</div>
 	</div>
-
+	
 
 </section>

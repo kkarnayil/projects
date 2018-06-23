@@ -1,86 +1,85 @@
 
 angular.module('service.quizservice', [])
 
-.service('QuizService', ['Config', 'AppLogger', function (Config, AppLogger) {
+.service('QuizService', ['Config', 'AppLogger','SessionService', function (Config, AppLogger, SessionService) {
 
     AppLogger.log('Quiz Service Loaded');
 
     var questions = [
         {
             "id": 1,
-            "question": "capital of india",
+            "question": "capital of assam",
             "correctAnswer": 3,
             "options": [{
                 "id": 1,
-                "option": "mumbai"
+                "option": "silchar"
             }, {
                 "id": 2,
-                "option": "pune"
+                "option": "shillong"
             }, {
                 "id": 3,
-                "option": "delhi"
+                "option": "dispur"
             }, {
                 "id": 4,
-                "option": "bangalore"
+                "option": "guwahati"
             }]
         },
         {
             "id": 2,
-            "question": "capital of maharashtra",
+            "question": "capital of meghalaya",
             "correctAnswer": 1,
             "options": [{
                 "id": 1,
-                "option": "mumbai"
+                "option": "shillong"
             }, {
                 "id": 2,
-                "option": "pune"
+                "option": "itanagar"
             }, {
                 "id": 3,
-                "option": "satara"
+                "option": "imphal"
             }, {
                 "id": 4,
-                "option": "kolhapur"
+                "option": "agartala"
             }]
         },
         {
             "id": 3,
-            "question": "capital of karnataka",
+            "question": "capital of manipur",
             "correctAnswer": 2,
             "options": [{
                 "id": 1,
-                "option": "mumbai"
+                "option": "itanagar"
             }, {
                 "id": 2,
-                "option": "bangalore"
+                "option": "imphal"
             }, {
                 "id": 3,
-                "option": "satara"
+                "option": "shillong"
             }, {
                 "id": 4,
-                "option": "kolhapur"
+                "option": "agartala"
             }]
         },
         {
             "id": 4,
-            "question": "capital of kerala",
-            "correctAnswer": 2,
+            "question": "capital of arunachal pradesh",
+            "correctAnswer": 3,
             "options": [{
                 "id": 1,
-                "option": "mumbai"
+                "option": "imphal"
             }, {
                 "id": 2,
-                "option": "trivandrum"
+                "option": "agartala"
             }, {
                 "id": 3,
-                "option": "satara"
+                "option": "itanagar"
             }, {
                 "id": 4,
-                "option": "kolhapur"
+                "option": "shillong"
             }]
         }
     ];
 
-  var candidateAnswers = [];
   var candidateScores = [];
   var candidate = {};
 
@@ -91,8 +90,13 @@ angular.module('service.quizservice', [])
     } else {
       candidateScores = [];
     }
+    candidate = SessionService.getUser();
     AppLogger.log('Quiz Service Initialized');
   };
+
+  this.onInit = function(){
+    init();
+  }
 
   this.reset = function() {
     AppLogger.log("Service User Reset");
@@ -102,17 +106,13 @@ angular.module('service.quizservice', [])
 
   this.registerUser = function(_candidate, promise){
     candidate = _candidate;
-    candidateAnswers = [];
-    promise({'status':200});
-  };
-
-  this.getCandidate = function() {
-    return candidate;
+    candidate.candidateAnswers = [];
+    SessionService.signIn(candidate);
+   promise({'status':200});
   };
 
   this.getQuestion = function(index) {  
-    console.log(candidate);  
-    const _questions = jQuery.extend(true, [], questions);
+   const _questions = jQuery.extend(true, [], questions);
     if (index <= _questions.length && index > 0) {
       return _questions[index - 1];
     } else {
@@ -132,35 +132,46 @@ angular.module('service.quizservice', [])
 
   this.storeUserAnswer = function(answerObj) {
     let questionFound = false;
-    for (let i = 0; i < candidateAnswers.length; i++) {
-      if (answerObj.questionId === candidateAnswers[i].questionId) {
-        candidateAnswers[i].answerId = answerObj.answerId;
+    for (let i = 0; i < candidate.candidateAnswers.length; i++) {
+      if (answerObj.questionId === candidate.candidateAnswers[i].questionId) {
+        candidate.candidateAnswers[i].answerId = answerObj.answerId;
         questionFound = true;
         break;
       }
     }
     if (!questionFound) {
-      candidateAnswers.push(answerObj);
-      console.log(candidateAnswers);
+      candidate.candidateAnswers.push(answerObj);
     }
+    localStorage.setItem(Config.userSessionKey, JSON.stringify(candidate));
   };
 
   this.calculateCandidateScore = function() {
     let score = 0;
-    for (let i = 0; i < candidateAnswers.length; i++) {
-
-      if (undefined !== candidateAnswers[i].answerId) {
-        const correctAnswerId = getCorrectAnswerId(candidateAnswers[i].questionId);
-        if (correctAnswerId === parseInt(candidateAnswers[i].answerId, 0)) {
+    for (let i = 0; i < candidate.candidateAnswers.length; i++) {
+      if (undefined !== candidate.candidateAnswers[i].answerId) {
+        const correctAnswerId = getCorrectAnswerId(candidate.candidateAnswers[i].questionId);
+        if (correctAnswerId === parseInt(candidate.candidateAnswers[i].answerId, 0)) {
           score++;
         }
       }
     }
-    console.log(score);
-    console.log(candidate);
     candidate.score = score;
     submitCandidateScore(candidate);
     return 1;
+  }
+
+  this.getCandidateAnswer = function(questionId){
+    if(null != candidate){
+      for (let i = 0; i < candidate.candidateAnswers.length; i++) {
+          if(questionId == candidate.candidateAnswers[i].questionId){
+              if(candidate.candidateAnswers[i].answerId){
+                return candidate.candidateAnswers[i].answerId;
+              }
+          }
+      }
+    }
+
+    return null;
   }
 
   function getCorrectAnswerId(questionId) {
@@ -173,7 +184,19 @@ angular.module('service.quizservice', [])
 
   function submitCandidateScore (candidate) {
     const _candidate = jQuery.extend(true, {}, candidate);
-    candidateScores.push(_candidate);
+    let isCandidatePresent = false;
+    localStorage.setItem(Config.userSessionKey, JSON.stringify(_candidate));
+    for(let i = 0 ; i < candidateScores.length ; i++){
+      if(candidateScores[i].email == candidate.email){
+        candidateScores[i].score = _candidate.score;
+        isCandidatePresent = true;
+        break;
+      }
+    }
+    if(!isCandidatePresent){
+      candidateScores.push(_candidate);
+    }
+    
     localStorage.setItem(Config.localStorageKey, JSON.stringify(candidateScores));
  };
 
@@ -183,5 +206,6 @@ angular.module('service.quizservice', [])
   };
 
   init();
+
 
 }]);

@@ -6,6 +6,7 @@ angular.module('myApp', [
   'myApp.config',
   'service.logservice',
   'service.quizservice',
+  'service.sessionservice',
   'controller.global',
   'view.home',
   'view.question',
@@ -20,10 +21,30 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $routeProvider.otherwise({redirectTo: '/home'});
 
 }]).
-run(function ($rootScope) {
+run(['AppLogger', 'SessionService', '$rootScope', function (AppLogger, SessionService, $rootScope) {
+
+    $rootScope.$on('$routeChangeStart', function($event, next, current) {
+        if(undefined !== next && undefined !== next.$$route){ 
+          let routeInfo = next.$$route;
+          if(routeInfo.originalPath){
+            if(SessionService.isRestrictedPage(routeInfo.originalPath) && !SessionService.isAuthenticated()){
+              AppLogger.error('Page Access Denied');
+              $event.preventDefault();
+            }
+
+            if('/question' === routeInfo.originalPath){
+                if(SessionService.quizSessionOver){
+                  AppLogger.error('Quiz Session Over. Page Access Denied');
+                  $event.preventDefault();
+                }
+            }
+          }
+      }
+    });
+
     $rootScope.$on('$routeChangeSuccess', function($event, current, previous) {
         if(undefined !== current && undefined !== current.$$route){ 
           $rootScope.$broadcast("pageChanged",current, previous);
       }
     });
-});
+}]);

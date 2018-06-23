@@ -10,6 +10,10 @@ angular.module('myApp.config', [])
 
 	this.localStorageKey = "quiz_data";
 
+	this.userSessionKey = "quiz_user_session";
+
+	this.restrictedPages = ["/question","/result"];
+
 	function init(){
 		if(me.enableDebug){
 			console.debug("%c [Config Loaded]: " + new Date(), 'color: #1102A2');

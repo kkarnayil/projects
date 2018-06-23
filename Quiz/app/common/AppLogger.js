@@ -10,6 +10,12 @@ angular.module('service.logservice', [])
 		if(this.isDebugEnabled){
 			console.debug("%c ["+message+"]:"+ new Date(), 'color: #1102A2');
 		}
+	};
+
+	this.error = function(message){
+		if(this.isDebugEnabled){
+			console.debug("%c ["+message+"]:"+ new Date(), 'color: #C70039');
+		}
 	}
 
 	

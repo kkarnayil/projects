@@ -4,21 +4,25 @@ angular.module('view.question', [])
 .config(['$routeProvider', function( $routeProvider) {
   $routeProvider.when('/question', {
     templateUrl: 'views/question/question.html',
-    controller: 'QuestionController'
+    controller: 'QuestionController',
+    authenticationRequired : true
   })
 }])
 
-.controller('QuestionController', ['$scope', '$location', 'AppLogger', 'QuizService', function($scope, $location, AppLogger, QuizService) {
+.controller('QuestionController', ['$scope', '$location', 'AppLogger', 'QuizService', 'SessionService', function($scope, $location, AppLogger, QuizService, SessionService) {
 	
 	$scope.questionNumber = -1;
     $scope.totalQuestions = -1;
     $scope.progressPercentage = 0;
     $scope.question = {};
+    $scope.btnText = "NEXT ";
+    $scope.user = null;
 
 	$scope.init = function (){
 		AppLogger.log('QuestionController Loaded');
         $scope.totalQuestions = QuizService.getQuestionsLength();
-		getQuestion();
+        QuizService.onInit();
+        getQuestion();
         	
 	};
 
@@ -34,9 +38,22 @@ angular.module('view.question', [])
         } else {
           const response = QuizService.calculateCandidateScore();
           if (1 === response) {
+            SessionService.quizSessionOver = true;
             $location.path('/result');
           }
         }
+    };
+
+    $scope.prevQuestion = function(){
+        const answerObj = {questionId: null, answerId: null};
+        answerObj.questionId = $scope.question.id;
+        answerObj.answerId =   $scope.question.selectedAnswer;
+        
+        QuizService.storeUserAnswer(answerObj);
+        
+        if ($scope.questionNumber > 0) {
+          $location.path("/question/").search({number: parseInt($scope.questionNumber) - 1});
+        } 
     };
 
     var getQuestion = function(){
@@ -44,13 +61,21 @@ angular.module('view.question', [])
         if(undefined !== questionNumberObj){
             $scope.questionNumber = questionNumberObj.number;
             AppLogger.log('Getting Question: #'+$scope.questionNumber);
-            try{              
+            try{                    
                 $scope.question = QuizService.getQuestion($scope.questionNumber);
+                var userAnswer = QuizService.getCandidateAnswer($scope.questionNumber);
+                if(null != userAnswer){
+                    $scope.question.selectedAnswer = userAnswer;
+                }
                 $scope.progressPercentage = (parseInt($scope.questionNumber)/$scope.totalQuestions)*100;
                 $scope.progressPercentageStyle = {width: $scope.progressPercentage +'%'};
+                if($scope.questionNumber == $scope.totalQuestions){
+                    $scope.btnText = "GET RESULT ";
+                }
             
             }catch(e){
                 alert(e);
+                AppLogger.error("Question Not Found");
                 $location.path("/home").search('number', null);
             }
         }else{
