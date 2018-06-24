@@ -23,7 +23,7 @@ angular.module('service.sessionservice', [])
 
 		AppLogger.log("Session Loaded: Is Authenticate: "+ isAuthenticated);
 
-	}
+	};
 
 	this.signIn = function(user, promise){
 		currentUser = user;
@@ -50,7 +50,7 @@ angular.module('service.sessionservice', [])
 	};
 
 	this.isRestrictedPage = function(page){
-		if(Config.restrictedPages.indexOf(page) >=0){
+		if(Config.restrictedPages.indexOf(page) >= 0){
 			return true;
 		}else{
 			return false;
@@ -68,6 +68,7 @@ angular.module('service.sessionservice', [])
 
 	this.startQuizSession = function(){
 		localStorage.setItem(Config.questionAccessKey, true);
+		currentUser.candidateAnswers = [];
 	};
 
 	this.getAllCandidateScores = function(){

@@ -13,11 +13,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{isHome}}"><a href="#!home">Home<span class="sr-only">(current)</span></a></li>
+                <li class="{{isHome}}"><a ng-href="#!home">Home<span class="sr-only">(current)</span></a></li>
                 <li class="{{isResults}}"><a href="#!results">Rankings</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right nav-border" ng-show="isLoggedIn">
+            <ul class="nav navbar-nav navbar-right nav-border" ng-if="isLoggedIn">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOLA! {{user.name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">

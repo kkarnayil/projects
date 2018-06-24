@@ -27,6 +27,7 @@ run(['AppLogger', 'SessionService', '$rootScope', '$location', function (AppLogg
     $rootScope.$on('$routeChangeStart', function($event, next, current) {
         if(undefined !== next && undefined !== next.$$route){ 
           let routeInfo = next.$$route;
+          let currentRouteInfo = undefined != current && undefined != current.$$route ? current.$$route : null;
           if(routeInfo.originalPath){
             if(SessionService.isRestrictedPage(routeInfo.originalPath) && !SessionService.isAuthenticated()){
               AppLogger.error('Page Access Denied');
@@ -50,6 +51,16 @@ run(['AppLogger', 'SessionService', '$rootScope', '$location', function (AppLogg
                 }
             }
 
+            var validExitPaths = ['/question', '/question/', '/result'];
+            if(null != currentRouteInfo && '/question' === currentRouteInfo.originalPath 
+              && (validExitPaths.indexOf(routeInfo.originalPath) < 0)){
+              var response= confirm("All your progress will be lost?");
+              if (response != true) {
+                $event.preventDefault();
+              }else{
+                AppLogger.warn('Leaving Quiz in Between');
+              }
+            }
           }
       }
     });

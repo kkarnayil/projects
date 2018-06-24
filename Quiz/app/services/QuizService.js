@@ -79,6 +79,24 @@ angular.module('service.quizservice', [])
                 "id": 4,
                 "option": "shillong"
             }]
+        },
+        {
+            "id": 5,
+            "question": "capital of kerala",
+            "correctAnswer": 4,
+            "options": [{
+                "id": 1,
+                "option": "kochi"
+            }, {
+                "id": 2,
+                "option": "kannur"
+            }, {
+                "id": 3,
+                "option": "Thrissur"
+            }, {
+                "id": 4,
+                "option": "Thiruvananthapuram"
+            }]
         }
     ];
 
@@ -172,7 +190,6 @@ angular.module('service.quizservice', [])
   function submitCandidateScore (candidate) {
     const _candidate = jQuery.extend(true, {}, candidate);
     let isCandidatePresent = false;
-    localStorage.setItem(Config.userSessionKey, JSON.stringify(_candidate));
     for(let i = 0 ; i < candidateScores.length ; i++){
       if(candidateScores[i].email == candidate.email){
         candidateScores[i].score = _candidate.score;
@@ -183,7 +200,7 @@ angular.module('service.quizservice', [])
     if(!isCandidatePresent){
       candidateScores.push(_candidate);
     }
-    
+    localStorage.setItem(Config.userSessionKey, JSON.stringify(_candidate));
     localStorage.setItem(Config.localStorageKey, JSON.stringify(candidateScores));
  };
 

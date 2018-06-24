@@ -4,21 +4,13 @@
 	     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 	    My Information</h1>
 	</div>
-	<div class="well well-lg">
-			
-			<div>
-			<h5>{{candidate.name | uppercase }}  </h5>
-			<h6>#{{candidate.email}}</h6> 
-			
-			</div>
-
-			<div>
-			<h5>My Score : {{candidate.score}}</h5> 
-			</div>
-
-			 <button ng-click="startQuiz()"class="btn btn-default">Take Quiz Again</button>
-
-
-
-	</div>
+	<div class="feature">
+            <img src="assets/speaker.png" class="speaker-img">
+            <h3>{{candidate.name | uppercase}}</h3>
+            
+            <div class="score">
+                <p>My Score : {{candidate.score}} </p>
+            </div>
+           
+          </div>
 </section>

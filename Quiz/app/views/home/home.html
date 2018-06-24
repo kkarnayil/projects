@@ -2,11 +2,11 @@
 <section id="home">
 	
 	<div class="row">
-		<div class="col-md-6 col-xs-12" ng-show="!isLoggedIn">	
+		<div class="col-md-6 col-xs-12" ng-if="!isLoggedIn">	
 			<candidate-registration></candidate-registration>
 		</div>
 
-		<div class="col-xs-12 col-md-6" ng-show="isLoggedIn">	
+		<div class="col-xs-12 col-md-6" ng-if="isLoggedIn">	
 			<candidate-score page="home"></candidate-score>
 		</div>
 
