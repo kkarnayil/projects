@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("component.candidatescores", [])
-  .component("candidateScores",{
+  .component("candidateScores",{ 
       templateUrl: 'components/candidatescores/candidatescores.html',
       controller: 'CandidateScoresController',
       bindings: { page: '@' }

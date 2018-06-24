@@ -1,11 +1,10 @@
 angular.module('service.sessionservice', [])
 
 .service('SessionService', ['Config', 'AppLogger', function (Config, AppLogger) {
-
+	var self = this;
 	var currentUser = null;
 	var isAuthenticated = false;
-	var quizAccess = false;
-
+	
 	this.init = function(){
 		
 		if(null != currentUser && currentUser.email){
@@ -26,10 +25,12 @@ angular.module('service.sessionservice', [])
 
 	}
 
-	this.signIn = function(user){
+	this.signIn = function(user, promise){
 		currentUser = user;
 		localStorage.setItem(Config.userSessionKey, JSON.stringify(user));
 		isAuthenticated = true;
+		self.startQuizSession();
+		promise({'status':200});
 	};
 
 	this.signOut = function(){
@@ -56,16 +57,21 @@ angular.module('service.sessionservice', [])
 		}
 	};
 
-	this.canAccessQuiz = function(){
-		return quizAccess;
-	}
+	this.canAccessQuiz = function(){	
+		AppLogger.log("Has Questions Access: "+ localStorage.getItem(Config.questionAccessKey));
+		return localStorage.getItem(Config.questionAccessKey);
+	};
 
 	this.endQuizSession = function(){
-		quizAccess = false;
+		localStorage.removeItem(Config.questionAccessKey);
 	};
 
 	this.startQuizSession = function(){
-		quizAccess = true;
+		localStorage.setItem(Config.questionAccessKey, true);
+	};
+
+	this.getAllCandidateScores = function(){
+		return localStorage.getItem(Config.localStorageKey);
 	};
 
 

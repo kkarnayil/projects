@@ -13,10 +13,10 @@ angular.module("component.candidateregistration", [])
 	 	$scope.user = {
 	        email: "",
 	        name: "",
+            candidateAnswers: [],
 	        score: 0
 	    };
-        QuizService.reset();
-    }
+    };
 
     /**
      * Method to register user
@@ -24,12 +24,11 @@ angular.module("component.candidateregistration", [])
      * @method registerCandidate
      */
     $scope.registerCandidate = function () {
-        AppLogger.log("Register user: " + JSON.stringify($scope.user));
-        QuizService.registerUser($scope.user, function (response) {
-            SessionService.startQuizSession();
-            AppLogger.log("Register User response: " + JSON.stringify(response));
-            $location.path("/question/").search({number: 1});                
-        });
+        AppLogger.log("Register Candidate Request: " + JSON.stringify($scope.user));
+            SessionService.signIn($scope.user, function(response){
+                 AppLogger.log("Register Candidate Response:" + JSON.stringify(response));
+                 $location.path("/question/").search({number: 1});    
+            });                             
     };
 
 }]);

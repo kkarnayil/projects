@@ -4,7 +4,9 @@ angular.module('service.quizservice', [])
 .service('QuizService', ['Config', 'AppLogger','SessionService', function (Config, AppLogger, SessionService) {
 
     AppLogger.log('Quiz Service Loaded');
-
+    var self = this;
+    var candidateScores = [];
+    var candidate = {};
     var questions = [
         {
             "id": 1,
@@ -80,11 +82,9 @@ angular.module('service.quizservice', [])
         }
     ];
 
-  var candidateScores = [];
-  var candidate = {};
-
-  function init() {
-    const _users = localStorage.getItem(Config.localStorageKey);
+  
+  this.onInit = function() {
+    const _users = SessionService.getAllCandidateScores();
     if (null != _users) {
       candidateScores = JSON.parse(_users);
     } else {
@@ -94,29 +94,16 @@ angular.module('service.quizservice', [])
     AppLogger.log('Quiz Service Initialized');
   };
 
-  this.onInit = function(){
-    init();
-  }
-
-  this.reset = function() {
-    AppLogger.log("Service User Reset");
-    candidate = undefined;
-    candidateAnswers = [];
-  };
-
-  this.registerUser = function(_candidate, promise){
-    candidate = _candidate;
-    candidate.candidateAnswers = [];
-    SessionService.signIn(candidate);
-   promise({'status':200});
-  };
-
   this.getQuestion = function(index) {  
-   const _questions = jQuery.extend(true, [], questions);
-    if (index <= _questions.length && index > 0) {
-      return _questions[index - 1];
-    } else {
-      throw new Error('Question not found');
+   if(SessionService.canAccessQuiz()){
+     const _questions = jQuery.extend(true, [], questions);
+      if (index <= _questions.length && index > 0) {
+        return _questions[index - 1];
+      } else {
+        throw new Error('Question not found');
+      }
+    }else{
+      throw new Error('No Access to Questions');
     }
   };
 
@@ -205,7 +192,6 @@ angular.module('service.quizservice', [])
     return _candidateScores;
   };
 
-  init();
-
+  this.onInit();
 
 }]);

@@ -12,6 +12,8 @@ angular.module('myApp.config', [])
 
 	this.userSessionKey = "quiz_user_session";
 
+	this.questionAccessKey = "quiz_question_access";
+
 	this.restrictedPages = ["/question","/result"];
 
 	function init(){

@@ -41,6 +41,15 @@ run(['AppLogger', 'SessionService', '$rootScope', '$location', function (AppLogg
                   $location.path('/access-denied');
                 }
             }
+
+            if('/result' === routeInfo.originalPath){
+                if(SessionService.canAccessQuiz()){
+                  AppLogger.error('Quiz Session Over. Page Access Denied');
+                  $event.preventDefault();
+                  $location.path('/access-denied');
+                }
+            }
+
           }
       }
     });

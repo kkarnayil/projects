@@ -12,15 +12,13 @@ angular.module('view.question', [])
 .controller('QuestionController', ['$scope', '$location', 'AppLogger', 'QuizService', 'SessionService', function($scope, $location, AppLogger, QuizService, SessionService) {
 	
     var self = this;
-
 	$scope.questionNumber = -1;
     $scope.totalQuestions = -1;
     $scope.progressPercentage = 0;
     $scope.question = {};
     $scope.btnText = "NEXT ";
-    $scope.user = null;
-
-	$scope.init = function (){
+    
+    $scope.init = function (){
 		AppLogger.log('QuestionController Loaded');
         QuizService.onInit();
         $scope.totalQuestions = QuizService.getQuestionsLength();
@@ -40,11 +38,16 @@ angular.module('view.question', [])
           const response = QuizService.calculateCandidateScore();
           if (1 === response) {
             SessionService.endQuizSession();
-            $location.path('/result');
+            $location.path('/result').search('number', null);
+          }else{
+            $location.path('/system-error').search('number', null);
           }
         }
     };
 
+    /**
+     * @return {[type]}
+     */
     $scope.prevQuestion = function(){
         const answerObj = {questionId: null, answerId: null};
         answerObj.questionId = $scope.question.id;
@@ -57,13 +60,15 @@ angular.module('view.question', [])
         } 
     };
 
+     /**
+      * @return {[type]}
+      */
      self.getQuestion = function(){
         var questionNumberObj = $location.search();
         if(undefined !== questionNumberObj){
             $scope.questionNumber = questionNumberObj.number;
             AppLogger.log('Getting Question: #'+$scope.questionNumber);
             try{
-                SessionService.quizSessionOver = false;               
                 $scope.question = QuizService.getQuestion($scope.questionNumber);
                 var userAnswer = QuizService.getCandidateAnswer($scope.questionNumber);
                 if(null != userAnswer){
@@ -76,13 +81,11 @@ angular.module('view.question', [])
                 }
             
             }catch(e){
-                alert(e);
                 AppLogger.error("Question Not Found");
-                $location.path("/home").search('number', null);
+                $location.path("/system-error").search('number', null);
             }
         }else{
-            alert('System Error!!!');           
-            $location.path("/home").search('number', null);
+            $location.path("/system-error").search('number', null);
         }
     };
 

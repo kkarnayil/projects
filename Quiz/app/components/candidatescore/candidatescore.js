@@ -8,17 +8,14 @@ angular.module("component.candidatescore", [])
  })
  .controller('CandidateScoreController', ['$scope', '$location', 'SessionService', 'AppLogger',function($scope, $location, SessionService, AppLogger) {
 
-	var self = this;
-
  	$scope.onInit = function(){		
  		AppLogger.log('CandidateScore Component Controller Loaded');		
  		$scope.candidate = SessionService.getUser();
-
-    };
+  };
 
     $scope.startQuiz = function(){
     	AppLogger.log('Take Quiz');		
-    	SessionService.startQuizSession();
+    	 SessionService.startQuizSession();
     	 $location.path("/question/").search({number: 1});
     };
 
